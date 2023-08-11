@@ -4,9 +4,9 @@
 [![Build Status](https://github.com/behinger/UnfoldDecode.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/behinger/UnfoldDecode.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/behinger/UnfoldDecode.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/behinger/UnfoldDecode.jl)
 
+Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experiments.
 
 
-Toolbox to decode ERPs with overlap, e.g. from eye-tracking experiments.
 
 Currently only the overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
 
@@ -27,7 +27,8 @@ Does the trick - you should probably do an Unfold.jl tutorial first though!
 have a look at PyMNE.jl to read the data. You need a data-matrix + DataFrames.jl event table (similar to EEGlabs EEG.events)
 
 ## Limitations
-No time generalization is available, but straight forward to implement with the current tooling.
+- Not thoroughly tested, no unit-tests yet!
+- Missing features: e.g. No time generalization is available, but straight forward to implement with the current tooling.
 
 ## Citing
 
