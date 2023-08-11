@@ -28,7 +28,7 @@ makedocs(;
     pages=[
         "Home" => "index.md",
         "tutorials"=>[
-            "Overlap corrected LDA" => "literate/tutorials/overlapcorrectedLDA.jl"
+            "Overlap corrected LDA" => "literate/tutorials/overlapcorrectedLDA.md"
         ]
     ],
 )

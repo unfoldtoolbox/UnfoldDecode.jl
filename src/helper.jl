@@ -22,10 +22,10 @@ end
 `measure`: Any measure of MLJ. Find a whole list: `MLJ.measures()`, by default balanced_accuracy, but root_mean_squared, accuracy etc. all possible.
 """
 function Unfold.coeftable(uf::UnfoldDecodingModel;measure=balanced_accuracy,averaged=true)
-mf = uf_lda.modelfit
+mf = uf.modelfit
 measures = []
 for splt = mf
-    modes = broadcast(x->broadcast(mode,x),uf_lda.modelfit[1].yhat)
+    modes = broadcast(x->broadcast(mode,x),uf.modelfit[1].yhat)
     push!(measures,	measure.(modes,Ref(splt.y)))
 end
 
@@ -34,7 +34,7 @@ end
 df= DataFrame(
     :coefname => uf.target[2],
     :basisname => uf.target[1],
-    :split=> repeat(1:length(uf_lda.modelfit),inner=size(measures[1],1)),
+    :split=> repeat(1:length(uf.modelfit),inner=size(measures[1],1)),
     :time => repeat(mf[1].times,outer=length(measures)),
     :estimate=>vcat(measures...),
 )

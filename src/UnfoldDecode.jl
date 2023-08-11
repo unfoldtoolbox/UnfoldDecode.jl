@@ -2,14 +2,12 @@ module UnfoldDecode
 
 using Unfold
 import Unfold.coeftable
+import Unfold.fit
 using MLJ
 using MultivariateStats
-using MLJBase
+import MLJBase
 using DataFrames
-
-
-LDA = @load LDA pkg=MultivariateStats
-
+using Logging # to deactivate some MLJ output
 
 # Write your package code here.
 include("types.jl")
@@ -20,4 +18,6 @@ include("overlap_corrected.jl")
 
 export UnfoldDecodingModel
 export coeftable
+export fit
+
 end

@@ -1,5 +1,6 @@
 
 """
+using Unfold: @maybe_threads
 Use UnfoldLinearModelContinuous time to remove all overlap from an event. Use the `model` classifier to predict the EEG data.
 Everything runs cross-validated with `nfolds`
 
@@ -7,12 +8,12 @@ Everything runs cross-validated with `nfolds`
 - `target`: String or Symbol with the `tbl[:,column]` to be decoded
 - `UnfoldFitkwargs`: optional Named Tuple as kwargs to provide to the initial "overlap-cleaning" modelfit, e.g. `UnfoldFitkwargs = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
 """
-function fit(UnfoldDecodingModel,design::Dict,
+function Unfold.fit(UnfoldDecodingModel,design::Dict,
 tbl,#::DataFrame,
 dat::AbstractMatrix,
 model::MLJ.Model,
 target::Pair;
-nfolds=6,eventcolumn=:event,UnfoldFitkwargs=(;))
+nfolds=6,eventcolumn=:event,UnfoldFitkwargs=(;),multithreading=true)
 
 # sort to split by neighbouring samples for overlap
 sort!(tbl,:latency)
@@ -22,7 +23,7 @@ train_test = MLJBase.train_test_pairs(CV(;nfolds=nfolds),1:size(tbl,1))
 
 
 fits = Array{DecodingFit}(undef,length(train_test))
-for split = 1:length(train_test)
+Unfold.@maybe_threads multithreading for split = 1:length(train_test)
     
 
     tbltrain = tbl[train_test[split][1],:]
@@ -35,8 +36,8 @@ for split = 1:length(train_test)
         design,tbltest,dat;eventcolumn=eventcolumn,UnfoldFitkwargs...)
     
     # get overlap free single trails 
-    X_train = singletrials(uf_train,tbltrain,target[1],eventcolumn)
-    X_test  = singletrials(uf_test, tbltest, target[1],eventcolumn)
+    X_train = singletrials(dat,uf_train,tbltrain,target[1],eventcolumn)
+    X_test  = singletrials(dat,uf_test, tbltest, target[1],eventcolumn)
 
     # get overlap free single trails test
     y_train = coerce(tbltrain[:,target[2]],OrderedFactor)

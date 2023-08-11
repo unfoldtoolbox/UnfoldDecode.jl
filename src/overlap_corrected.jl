@@ -2,8 +2,8 @@
 Returns the single trial corrected (and "epoched") trials from the basis `target`
 
 """
-function singletrials(uf_train::UnfoldLinearModelContinuousTime,
-	tbltrain::DataFrame,target::Union{String,Symbol},eventcolumn)
+function singletrials(dat,uf_train::UnfoldLinearModelContinuousTime,
+	tbltrain::DataFrame,target,eventcolumn)
   
 	basis = Unfold.design(uf_train)[target][2]
 		

@@ -5,6 +5,7 @@ version = "0.1.0"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 MLJ = "add582a8-e3ab-11e8-2d5e-e98b27df1bc7"
 MLJBase = "a7f614a8-145f-11e9-1d2a-a57a1082229d"
 MLJMultivariateStatsInterface = "1b6a4a23-ba22-4f51-9698-8599985d3728"
