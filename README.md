@@ -22,7 +22,14 @@ uf_lda = fit(UnfoldDecodingModel,des,evt,dat,LDA(),"fixation"=>:condition)
 ```
 
 Does the trick - you should probably do an Unfold.jl tutorial first though!
-
+## Installation
+Not yet registered thus you have to do:
+```julia
+using Pkg
+Pkg.add(url="https://github.com/behinger/UnfoldDecode.jl")
+using UnfoldDecode
+```
+once it is registered, this will simplify to `Pkg.add("UnfoldDecode")`
 ## Loading Data
 have a look at PyMNE.jl to read the data. You need a data-matrix + DataFrames.jl event table (similar to EEGlabs EEG.events)
 
