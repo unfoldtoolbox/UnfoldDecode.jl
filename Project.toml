@@ -1,9 +1,22 @@
 name = "UnfoldDecode"
 uuid = "ec0f67a1-ae9f-4687-b20b-bd39d33e72da"
 authors = ["Benedikt V. Ehinger"]
-version = "1.0.0-DEV"
+version = "0.1.0"
+
+[deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+MLJ = "add582a8-e3ab-11e8-2d5e-e98b27df1bc7"
+MLJBase = "a7f614a8-145f-11e9-1d2a-a57a1082229d"
+MLJMultivariateStatsInterface = "1b6a4a23-ba22-4f51-9698-8599985d3728"
+MultivariateStats = "6f286f6a-111f-5878-ab1e-185364afe411"
+Unfold = "181c99d8-e21b-4ff3-b70b-c233eddec679"
 
 [compat]
+MLJ = "0.19"
+MLJBase = "0.21"
+MLJMultivariateStatsInterface = "0.5"
+MultivariateStats = "0.10"
+Unfold = "0.5,0.6"
 julia = "1"
 
 [extras]

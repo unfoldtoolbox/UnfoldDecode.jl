@@ -1,3 +1,6 @@
 [deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 UnfoldDecode = "ec0f67a1-ae9f-4687-b20b-bd39d33e72da"
+UnfoldMakie = "69a5ce3b-64fb-4f22-ae69-36dd4416af2a"
+UnfoldSim = "ed8ae6d2-84d3-44c6-ab46-0baf21700804"
