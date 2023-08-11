@@ -25,7 +25,7 @@ function Unfold.coeftable(uf::UnfoldDecodingModel;measure=balanced_accuracy,aver
 mf = uf.modelfit
 measures = []
 for splt = mf
-    modes = broadcast(x->broadcast(mode,x),uf.modelfit[1].yhat)
+    modes = broadcast(x->broadcast(mode,x),splt.yhat)
     push!(measures,	measure.(modes,Ref(splt.y)))
 end
 

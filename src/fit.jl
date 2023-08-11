@@ -40,8 +40,11 @@ Unfold.@maybe_threads multithreading for split = 1:length(train_test)
     X_test  = singletrials(dat,uf_test, tbltest, target[1],eventcolumn)
 
     # get overlap free single trails test
-    y_train = coerce(tbltrain[:,target[2]],OrderedFactor)
-    y_test  = coerce(tbltest[:, target[2]],OrderedFactor)
+    ix_train = target[1] == Any ? (1:size(tbltrain)) : tbltrain[:,eventcolumn] .== target[1]
+    ix_test  = target[1] == Any ? (1:size(tbltest))  : tbltest[:,eventcolumn]  .== target[1]
+
+    y_train = coerce(tbltrain[ix_train,target[2]],OrderedFactor)
+    y_test  = coerce(tbltest[ix_test, target[2]],OrderedFactor)
 
     # train
      machines =fit_timepoints(model,X_train,y_train)

@@ -29,7 +29,10 @@ makedocs(;
         "Home" => "index.md",
         "tutorials"=>[
             "Overlap corrected LDA" => "literate/tutorials/overlapcorrectedLDA.md"
-        ]
+        ],
+        "HowTo" =>[
+            "Overlap corrected, multi-event, many options, LDA" => "literate/HowTo/overlapcorrectedLDA_options.md",
+        ],
     ],
 )
 

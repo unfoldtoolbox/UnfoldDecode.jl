@@ -30,3 +30,5 @@ uf_lda = fit(UnfoldDecodingModel,des,evt,dat,LDA(),Any=>:condition;nfolds=2) # 2
 plot_erp(coeftable(uf_lda))
 
 # Voila, the model classified the correct period. 
+
+

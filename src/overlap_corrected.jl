@@ -21,13 +21,41 @@ function singletrials(dat,uf_train::UnfoldLinearModelContinuousTime,
 	# get predicted singler trial events
 	# XXX multi-basis, this will select the wrong formula
 
-	@assert(target == Any, "multibasis not yet implemented, probably here the only problem could occur!")
-	fromTo,timesvec,eff =  Unfold.yhat(uf_train,[Unfold.formula(uf_train).rhs],eventTbl)
+	#@assert(target == Any, "multibasis not yet implemented, probably here the only problem could occur!")
+	forms =  Unfold.formula(uf_train)
+	if forms isa Array
+		# find out which basis to use for decoding
+		function whichevent(uf,target,eventcolumn)
+			for (ix,e) = enumerate(Unfold.designmatrix(uf).events)
+				if e[1,eventcolumn] == target
+					return ix
+				end
+			end
+		end
+		ix = whichevent(uf_train,target,eventcolumn)
+		
+	else
+		forms = [forms.rhs]
+		ix = 1
+	end
 	
+	fromTo,timesvec,eff =  Unfold.yhat(uf_train,forms,eventTbl)
+	if forms isa Array
+		
+		mxsum = cumsum(maximum.(fromTo))
+		
+		
+		fromTo = fromTo[ix] 
+		if ix>1
+			fromTo .+= mxsum[ix-1]
+		end
+	else
+		fromTo = fromTo[1]
+	end
 
 	
-	out_e = Array{Float64}(undef,size(dat,1),fromTo[1].step,length(fromTo[1]))
-	perevent_views = view.(Ref(eff),fromTo[1],Ref(1:size(eff,2)))
+	out_e = Array{Float64}(undef,size(dat,1),fromTo.step,length(fromTo))
+	perevent_views = view.(Ref(eff),fromTo,Ref(1:size(eff,2)))
 
 	for e = 1:length(onsets)
 	
@@ -41,7 +69,7 @@ function singletrials(dat,uf_train::UnfoldLinearModelContinuousTime,
 		# calculate residuals
 		resid =   @view(dat[:,dataIx]) .- (@view(X_train[dataIx,:]) * coef(uf_train)')'
 		# add back the current response, now overlap corrected :)
-		ix_eff = (fromTo[1][e]:fromTo[1][e]+fromTo[1].step-1)
+		ix_eff = (fromTo[e]:fromTo[e]+fromTo.step-1)
 		
 		out_e[:,ixix,e] .=resid  .+ @view(eff[ix_eff[ixix],:])'
 	end
