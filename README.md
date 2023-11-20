@@ -39,3 +39,21 @@ have a look at PyMNE.jl to read the data. You need a data-matrix + DataFrames.jl
 ## Citing
 
 If you use this code, please cite this code + the appropriate paper/algorithm
+
+## Contributions
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+
+
+This project follows the [all-contributors](https://allcontributors.org/docs/en/specification) specification. 
+
+Contributions of any kind welcome!
+You can find the emoji key for the contributors [here](https://github.com/unfoldtoolbox/Unfold.jl/blob/main/docs/contrib-emoji.md).
