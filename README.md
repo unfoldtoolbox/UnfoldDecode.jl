@@ -10,6 +10,10 @@
 
 Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experiments.
 
+> [!WARNING]
+> No unit-tests implemented as of 2024-01-09 - use at your own risk!
+
+
 Currently only the overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
 
 ¹ actually any MLJ supported classification/regressoin model is already supported
