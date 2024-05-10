@@ -6,7 +6,10 @@ import Unfold.fit
 using MLJ
 using MultivariateStats
 import MLJBase
+using MLBase
 using DataFrames
+using ProgressMeter
+using LinearAlgebra
 using Logging # to deactivate some MLJ output
 
 # Write your package code here.
