@@ -64,7 +64,7 @@ function Unfold.fit(UnfoldDecodingModel, design,
         # test
         missingIx = .!any(ismissing.(X_test), dims=(1, 2))
         goodIx = dropdims(missingIx, dims=(1, 2))
-        yhat = predict_timepoints(machines, @view(X_test[:, :, goodIx]))
+        yhat = predict_timepoints(machines, disallowmissing(@view(X_test[:, :, goodIx])))
 
         # save it
         times = Unfold.times(uf_train)[1]

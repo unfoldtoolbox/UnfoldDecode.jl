@@ -39,3 +39,13 @@ uf_lda = fit(UnfoldDecodingModel, des, evt, dat, ldaModel, "eventA" => :conditio
 plot_erp(coeftable(uf_lda))
 
 # Voila, the model classified the correct period at the correct event
+
+# # Fit an SVM instead of LDA
+using MLJLIBSVMInterface
+SVC = @load SVC pkg = LIBSVM
+uf_svm = fit(UnfoldDecodingModel, des, evt, dat, SVC(), "eventA" => :condition;
+    nfolds=2,
+    UnfoldFitkwargs=(; solver=customsolver),
+    eventcolumn=:event,
+    multithreading=false)
+#plot_erp(coeftable(uf_svm))
