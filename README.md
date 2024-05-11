@@ -13,10 +13,12 @@ Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experimen
 > [!WARNING]
 > No unit-tests implemented as of 2024-01-09 - use at your own risk!
 
+Currently the following algorithms are implemented:
 
-Currently only the overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
+- [back-to-back regession](https://doi.org/10.1016/j.neuroimage.2020.117028) (`solver_b2b`, [tutorial how to use](https://unfoldtoolbox.github.io/Unfold.jl/dev/HowTo/custom_solvers/#Back2Back-regression)) 
+- overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
 
-¹ actually any MLJ supported classification/regressoin model is already supported
+¹ actually any MLJ supported classification/regression model is already supported (beta)
 
 ## Install
 
@@ -80,11 +82,6 @@ You are very welcome to raise issues and start pull requests!
 2. Literate.jl converts the `.jl` file to a `.md` automatically and places it in `docs/src/generated/FOLDER/FILENAME.md`.
 3. Edit [make.jl](https://github.com/unfoldtoolbox/Unfold.jl/blob/main/docs/make.jl) with a reference to `docs/src/generated/FOLDER/FILENAME.md`.
 
-## Contributors (alphabetically)
-
-- **Hannes Bonasch**
-- **Benedikt Ehinger**
-
 
 ## Citation
 
@@ -93,3 +90,22 @@ If you use this code, please cite this code + the appropriate paper/algorithm
 ## Acknowledgements
 
 Funded by Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany´s Excellence Strategy – EXC 2075 – 390740016
+
+## Contributions
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+
+
+This project follows the [all-contributors](https://allcontributors.org/docs/en/specification) specification. 
+
+Contributions of any kind welcome!
+You can find the emoji key for the contributors [here](https://github.com/unfoldtoolbox/Unfold.jl/blob/main/docs/contrib-emoji.md).
+

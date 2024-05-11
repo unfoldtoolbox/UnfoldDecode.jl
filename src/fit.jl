@@ -8,57 +8,72 @@ Everything runs cross-validated with `nfolds`
 - `target`: String or Symbol with the `tbl[:,column]` to be decoded
 - `UnfoldFitkwargs`: optional Named Tuple as kwargs to provide to the initial "overlap-cleaning" modelfit, e.g. `UnfoldFitkwargs = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
 """
-function Unfold.fit(UnfoldDecodingModel,design::Dict,
-tbl,#::DataFrame,
-dat::AbstractMatrix,
-model::MLJ.Model,
-target::Pair;
-nfolds=6,eventcolumn=:event,UnfoldFitkwargs=(;),multithreading=true)
+function Unfold.fit(UnfoldDecodingModel, design,
+    tbl,#::DataFrame,
+    dat::AbstractMatrix,
+    model::MLJ.Model,
+    target::Pair;
+    nfolds=6, eventcolumn=:event, UnfoldFitkwargs=(;), multithreading=true)
 
-# sort to split by neighbouring samples for overlap
-sort!(tbl,:latency)
+    tbl = deepcopy(tbl)
+    # sort to split by neighbouring samples for overlap
+    sort!(tbl, :latency)
+    if first(target) == Any
+        tbl.event .= Any
+    end
+    # get CV splits
+    train_test = MLJBase.train_test_pairs(CV(; nfolds=nfolds), 1:size(tbl, 1))
 
-# get CV splits
-train_test = MLJBase.train_test_pairs(CV(;nfolds=nfolds),1:size(tbl,1))
+
+    fits = Array{DecodingFit}(undef, length(train_test))
+    #Unfold.@maybe_threads multithreading 
+    for split = 1:length(train_test)
 
 
-fits = Array{DecodingFit}(undef,length(train_test))
-Unfold.@maybe_threads multithreading for split = 1:length(train_test)
-    
+        tbltrain = @view tbl[train_test[split][1], :]
+        tbltest = @view tbl[train_test[split][2], :]
 
-    tbltrain = tbl[train_test[split][1],:]
-    tbltest =  tbl[train_test[split][2],:]
-    
-    # XXX remove the boundary data to ensure no leakage
-    uf_train = Unfold.fit(UnfoldLinearModelContinuousTime,
-        design,tbl,dat;eventcolumn=eventcolumn,UnfoldFitkwargs...)
-    uf_test  = Unfold.fit(UnfoldLinearModelContinuousTime,
-        design,tbltest,dat;eventcolumn=eventcolumn,UnfoldFitkwargs...)
-    
-    # get overlap free single trails 
-    X_train = singletrials(dat,uf_train,tbltrain,target[1],eventcolumn)
-    X_test  = singletrials(dat,uf_test, tbltest, target[1],eventcolumn)
+        # XXX remove the boundary data to ensure no leakage
+        uf_train = Unfold.fit(UnfoldLinearModelContinuousTime,
+            design, tbl, dat; eventcolumn=eventcolumn, UnfoldFitkwargs...)
 
-    # get overlap free single trails test
-    ix_train = target[1] == Any ? (1:size(tbltrain)) : tbltrain[:,eventcolumn] .== target[1]
-    ix_test  = target[1] == Any ? (1:size(tbltest))  : tbltest[:,eventcolumn]  .== target[1]
+        uf_test = Unfold.fit(UnfoldLinearModelContinuousTime,
+            design, tbltest, dat; eventcolumn=eventcolumn, UnfoldFitkwargs...)
 
-    y_train = coerce(tbltrain[ix_train,target[2]],OrderedFactor)
-    y_test  = coerce(tbltest[ix_test, target[2]],OrderedFactor)
+        # get overlap free single trails 
+        X_train = singletrials(dat, uf_train, tbltrain, target[1], eventcolumn)
+        X_test = singletrials(dat, uf_test, tbltest, target[1], eventcolumn)
 
-    # train
-     machines =fit_timepoints(model,X_train,y_train)
+        # get overlap free single trails test
+        ix_train = first(target) == Any ? (1:size(tbltrain, 1)) : tbltrain[:, eventcolumn] .== target[1]
+        ix_test = target[1] == Any ? (1:size(tbltest, 1)) : tbltest[:, eventcolumn] .== target[1]
 
-    # test
-    yhat = predict_timepoints(machines,X_test)
+        y_train = coerce(tbltrain[ix_train, target[2]], OrderedFactor)
+        y_test = coerce(tbltest[ix_test, target[2]], OrderedFactor)
 
-    # save it
-    times = Unfold.times(Unfold.design(uf_train)[target[1]][2])[1:end-1]
-    fits[split] = DecodingFit(machines,train_test[split],yhat,y_test,times)
 
-        
+        # remove missing 
 
-end
-    
-return UnfoldDecodingModel(design, target,tbl,fits)
+        # train
+
+        missingIx = .!any(ismissing.(X_train), dims=(1, 2))
+        goodIx = dropdims(missingIx, dims=(1, 2))
+
+        machines = fit_timepoints(model, disallowmissing(@view(X_train[:, :, goodIx])), @view(y_train[goodIx]),)
+
+        # test
+        missingIx = .!any(ismissing.(X_test), dims=(1, 2))
+        goodIx = dropdims(missingIx, dims=(1, 2))
+        yhat = predict_timepoints(machines, disallowmissing(@view(X_test[:, :, goodIx])))
+
+        # save it
+        times = Unfold.times(uf_train)[1]
+        #return machines, train_test[split], yhat, y_test, times
+        fits[split] = DecodingFit(machines, train_test[split], yhat, y_test[goodIx], times)
+
+
+
+    end
+    #return fits
+    return UnfoldDecodingModel(design, target, tbl, fits)
 end
