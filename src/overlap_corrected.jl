@@ -6,10 +6,10 @@ function singletrials(dat, uf_train::UnfoldLinearModelContinuousTime,
     tbltrain::AbstractDataFrame, target_eventname, eventcolumn)
 
 
-    #pred_notarget = Unfold.predict_partial_overlap(uf_train, coef(uf_train), [tbltrain]; exclude_basis=[target_eventname], epoch_to=target_eventname, eventcolumn)
+
     basisnames = Unfold.basisname(uf_train)
     ix = findfirst(target_eventname .== basisnames)
-    pred = Unfold.predict(uf_train, overlap=false)[ix]
+
     tw = Unfold.calc_epoch_timewindow(uf_train, target_eventname)
 
 
@@ -20,8 +20,13 @@ function singletrials(dat, uf_train::UnfoldLinearModelContinuousTime,
         ]
     latencies = vcat(find_lat(tbltrain))
 
-    resid_targetonly = Unfold._residuals(pred, dat, latencies, (tw[1], tw[end]))
 
-    return pred, dat, latencies, (tw[1], tw[end])
-    return resid_targetonly
+    pred_target = Unfold.predict_no_overlap(uf_train, coef(uf_train), Unfold.formulas(uf_train)[ix:ix], [tbltrain[tbltrain[:, eventcolumn].==target_eventname, :]])[1]
+
+    pred_full = Unfold.predict_partial_overlap(uf_train, coef(uf_train), [tbltrain]; epoch_to=target_eventname, eventcolumn)
+    residuals = Unfold._residuals(pred_full, dat, latencies, (tw[1], tw[end]))
+
+    @debug size(residuals) size(pred_target)
+    #return pred, dat, latencies, (tw[1], tw[end])
+    return residuals .+ pred_target
 end
