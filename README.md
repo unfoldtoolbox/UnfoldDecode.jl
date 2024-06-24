@@ -1,8 +1,8 @@
 # [![logo_UnfoldDecode jl_120px](https://github.com/unfoldtoolbox/UnfoldDecode.jl/assets/57703446/965b93aa-33e1-420e-a707-1fe8d7e3bcbe)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/tree/main)
 
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://behinger.github.io/UnfoldDecode.jl/dev/)
-[![Build Status](https://github.com/behinger/UnfoldDecode.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/behinger/UnfoldDecode.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/behinger/UnfoldDecode.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/behinger/UnfoldDecode.jl)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/dev/)
+[![Build Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/unfoldtoolbox/UnfoldDecode.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/unfoldtoolbox/UnfoldDecode.jl)
 
 |rERP|EEG visualisation|EEG Simulations|BIDS pipeline|Decode EEG data|Statistical testing|
 |---|---|---|---|---|---|
@@ -45,7 +45,7 @@ AppStore -> JuliaUp,  or `winget install julia -s msstore` in CMD
 Not yet registered thus you have to do:
 ```julia
 using Pkg
-Pkg.add(url="https://github.com/behinger/UnfoldDecode.jl")
+Pkg.add(url="https://github.com/unfoldtoolbox/UnfoldDecode.jl")
 using UnfoldDecode
 ```
 once it is registered, this will simplify to `Pkg.add("UnfoldDecode")`
