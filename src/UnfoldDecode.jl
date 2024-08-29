@@ -12,6 +12,15 @@ using ProgressMeter
 using LinearAlgebra
 using Logging # to deactivate some MLJ output
 
+using MLJLinearModels,Tables
+# using MLJScikitLearnInterface
+using MultivariateStats
+using MLJMultivariateStatsInterface
+# using LIBSVM
+# using MLJLIBSVMInterface
+using DecisionTree
+using MLJDecisionTreeInterface
+
 # Write your package code here.
 include("types.jl")
 include("decoding.jl")

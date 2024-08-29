@@ -1,0 +1,72 @@
+{
+    "arch": "x86_64",
+    "build": "hc790b64_3",
+    "build_number": 3,
+    "build_string": "hc790b64_3",
+    "channel": "https://conda.anaconda.org/conda-forge/win-64",
+    "constrains": [],
+    "depends": [
+        "libhwloc >=2.11.1,<2.11.2.0a0",
+        "ucrt >=10.0.20348.0",
+        "vc >=14.2,<15",
+        "vc14_runtime >=14.29.30139"
+    ],
+    "extracted_package_dir": "C:\\Users\\Chen Xincheng\\.julia\\scratchspaces\\0b3b1443-0f03-428d-bdfb-f27f9c1191ea\\root\\pkgs\\tbb-2021.12.0-hc790b64_3",
+    "files": [
+        "Library\\bin\\tbb12.dll",
+        "Library\\bin\\tbbbind_2_5.dll",
+        "Library\\bin\\tbbmalloc.dll",
+        "Library\\bin\\tbbmalloc_proxy.dll"
+    ],
+    "fn": "tbb-2021.12.0-hc790b64_3.conda",
+    "license": "Apache-2.0",
+    "link": {
+        "source": "C:\\Users\\Chen Xincheng\\.julia\\scratchspaces\\0b3b1443-0f03-428d-bdfb-f27f9c1191ea\\root\\pkgs\\tbb-2021.12.0-hc790b64_3",
+        "type": 1
+    },
+    "md5": "a16e2a639e87c554abee5192ce6ee308",
+    "name": "tbb",
+    "package_tarball_full_path": "C:\\Users\\Chen Xincheng\\.julia\\scratchspaces\\0b3b1443-0f03-428d-bdfb-f27f9c1191ea\\root\\pkgs\\tbb-2021.12.0-hc790b64_3.tar.bz2",
+    "paths_data": {
+        "paths": [
+            {
+                "_path": "Library\\bin\\tbb12.dll",
+                "path_type": "hardlink",
+                "sha256": "15d243c09b0d8998fd9bb695d300805ec133c9086b81ae1d865f810aa34b11e8",
+                "sha256_in_prefix": "15d243c09b0d8998fd9bb695d300805ec133c9086b81ae1d865f810aa34b11e8",
+                "size_in_bytes": 331776
+            },
+            {
+                "_path": "Library\\bin\\tbbbind_2_5.dll",
+                "path_type": "hardlink",
+                "sha256": "cc96ff2e68c8a77fe3edd33829adbae3bda4fea62384cc44b5c5d32cfb8747a9",
+                "sha256_in_prefix": "cc96ff2e68c8a77fe3edd33829adbae3bda4fea62384cc44b5c5d32cfb8747a9",
+                "size_in_bytes": 23040
+            },
+            {
+                "_path": "Library\\bin\\tbbmalloc.dll",
+                "path_type": "hardlink",
+                "sha256": "04d379bab9154e307e109b846633dfbb933bbe265797a5dad9690bf2a580fc30",
+                "sha256_in_prefix": "04d379bab9154e307e109b846633dfbb933bbe265797a5dad9690bf2a580fc30",
+                "size_in_bytes": 112640
+            },
+            {
+                "_path": "Library\\bin\\tbbmalloc_proxy.dll",
+                "path_type": "hardlink",
+                "sha256": "ca243ef42cb039545de0f89fdff86a798d75450fc7e5407593c121328cb18333",
+                "sha256_in_prefix": "ca243ef42cb039545de0f89fdff86a798d75450fc7e5407593c121328cb18333",
+                "size_in_bytes": 31232
+            }
+        ],
+        "paths_version": 1
+    },
+    "platform": "win",
+    "requested_spec": "",
+    "sha256": "721a88d702e31efd9437d387774ef9157846743e66648f5f863b29ae322e8479",
+    "size": 161213,
+    "subdir": "win-64",
+    "timestamp": 1720768916898,
+    "track_features": "",
+    "url": "https://conda.anaconda.org/conda-forge/win-64/tbb-2021.12.0-hc790b64_3.conda",
+    "version": "2021.12.0"
+}

@@ -26,7 +26,7 @@ plot_erp(coeftable(uf))
 # Following the [MLJ Modelzoo](https://alan-turing-institute.github.io/MLJ.jl/dev/list_of_supported_models/) we have to do the following to load an LDA model
 using MLJ, MultivariateStats, MLJMultivariateStatsInterface
 LDA = @load LDA pkg = MultivariateStats
-uf_lda = fit(UnfoldDecodingModel, des, evt, dat, LDA(), Any => :condition; nfolds=2) # 2 folds to speed up computation
+uf_lda = Unfold.fit(UnfoldDecodingModel, des, evt, dat, LDA(), Any => :condition; nfolds=2) # 2 folds to speed up computation
 plot_erp(coeftable(uf_lda))
 
 # Voila, the model classified the correct period. 

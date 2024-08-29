@@ -13,7 +13,8 @@ function fit_timepoints(model,X_train,y_train)
                 scitype_check_level=0)
     
         Logging.with_logger(logger) do
-            fit!(machines[t])
+            # fit(machine)
+            MLBase.fit!(machines[t], verbosity=0) # Use MLBase.fit! to specify the fit function we used
         end
     end
     return machines

@@ -5,7 +5,7 @@ using Literate
 
 
 GENERATED = joinpath(@__DIR__, "src", "literate")
-for subfolder ∈ ["explanations","HowTo","tutorials","reference"]
+for subfolder ∈ ["explanations","HowTo","tutorials","BackToBack","reference"]
     local SOURCE_FILES = Glob.glob(subfolder*"/*.jl", GENERATED)
     #config=Dict(:repo_root_path=>"https://github.com/unfoldtoolbox/UnfoldSim")
     foreach(fn -> Literate.markdown(fn, GENERATED*"/"*subfolder), SOURCE_FILES)
@@ -17,7 +17,7 @@ DocMeta.setdocmeta!(UnfoldDecode, :DocTestSetup, :(using UnfoldDecode); recursiv
 makedocs(;
     modules=[UnfoldDecode],
     authors="Benedikt V. Ehinger",
-    repo="https://github.com/behinger/UnfoldDecode.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/{commit}{path}#{line}",
     sitename="UnfoldDecode.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
@@ -33,10 +33,15 @@ makedocs(;
         "HowTo" =>[
             "Overlap corrected, multi-event, many options, LDA" => "literate/HowTo/overlapcorrectedLDA_options.md",
         ],
+        "BackToBack" =>[
+            "Quick Start b2b" => "literate/BackToBack/Quick_Start_b2b.md",
+            "About Back-to-Back Decoding" => "literate/BackToBack/About_BacktoBack.md",
+            "About b2b" => "literate/BackToBack/About_b2b.md",  
+        ],
     ],
 )
 
 deploydocs(;
-    repo="github.com/behinger/UnfoldDecode.jl",
+    repo="github.com/unfoldtoolbox/UnfoldDecode.jl",
     devbranch="main",
 )

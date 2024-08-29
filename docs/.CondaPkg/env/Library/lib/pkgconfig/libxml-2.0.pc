@@ -1,0 +1,11 @@
+prefix=D:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library 
+exec_prefix=D:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library 
+libdir=D:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library/lib 
+includedir=D:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library/include 
+modules=0 
+Name: libXML 
+Version: 2.12.7 
+Description: libXML library version2. 
+Requires: 
+Libs: -LD:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library/lib -lxml2 -liconv -lz 
+Cflags: -ID:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library/include/libxml2 -ID:/CXC/Uni Stuttgart/24S/EGG/project/B2B/UnfoldDecode.jl/docs/.CondaPkg/env/Library/include 
