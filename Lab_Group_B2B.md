@@ -14,3 +14,7 @@ Forthly, we added several new regression functions(LS, Lasso, SVM, Adaboost) and
 
 #### Comparing the results
 Lastly, we compared the results of different functions. And SVM would be the most ideal one. 
+
+#### Further working
+- We tried to do a unittest (testdata), in which we built a simplified model, and compared the results using functions in backtoback regression in Julia to ones using sklearn in python (sklearn.py). But we encountered some problem with fitting. We tried by adding the test_utilities.jl and new_testcases.m from tests in Unfold.
+- Also, we tried the LIBSVM in MLJ (0801B2BLIBSVM), but it didn't work quite well, so we used LinearSVM instead. 

@@ -54,7 +54,7 @@ function solver_b2b(
 
     ## `size(data,1)` is the number of time slots.
 
-    ## The use of W will be explained later also. 
+    ## The use of W will also be explained later. 
     W = Array{Float64}(undef,size(data,2),size(X,2),size(data,1))
 
     ## Here we define the progress of our regression, and print out the the number of samples to check the validation of our model
@@ -82,7 +82,7 @@ function solver_b2b(
             X1 = X[k_ix[1],:]
             X2 = X[k_ix[2],:]
 
-            ## The first regression is a backregression, which regresses X1 against Y1. 
+            ## The first regression is a backforward regression, which regresses X1 against Y1. 
 
             ## We estimate the linear regression coefficients `G` ̂from Y1 to X1, which recovers the correlations between Y and each factor of X.
             G = model_fun(Y1',X1)
@@ -201,7 +201,7 @@ end;
 # ## Calculation function
 ## For different models, we have different parameters, so it would be different for them to calculate the result of the regression.
 
-## (Here we use G as a symble to represent the result. But actually it can be either G or H defined by our main function)
+## (Here we use G as a symbol to represent the result. But actually it can be either G or H defined by our main function)
 
 ## They can be splitted into three groups. （LSQ is pretty easy so that it doesn't need a calculation function, so it is not in any group）
 

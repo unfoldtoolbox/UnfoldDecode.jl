@@ -30,14 +30,14 @@ dat_3d .+= 0.1*rand(size(dat_3d)...)
 
 #---
 function run_b2b(f)
-    designDict = [Any => (f, range(0, 0.44, step = 1/100))];
-    m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver);
-    results = coeftable(m);
-    results.estimate = abs.(results.estimate);
-    results = results[results.coefname .!="(Intercepgt)",:];
-    results.formula .= string(f);
-    return results;
-end;
+    designDict = [Any => (f, range(0, 0.44, step = 1/100))]
+    m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver)
+    results = coeftable(m)
+    results.estimate = abs.(results.estimate)
+    results = results[results.coefname .!="(Intercept)",:]
+    results.formula .= string(f)
+    return results
+end
 
 results_all = DataFrame();
 results_all = vcat(run_b2b(@formula 0 ~ 1  + animal + eye_angle),

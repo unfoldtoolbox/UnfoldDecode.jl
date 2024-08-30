@@ -102,15 +102,6 @@ function gen_model_adaboost(;kwargs...)
     return model
 end
 
-
-
-
-# function model_ls()
-#     LSRegressor = @load LSRegressor pkg=MultivariateStats
-#     model = LSRegressor()
-#     return model
-# end
-
 # tuning the hyperparameters of the model
 function tunemodel(model;nfolds=5,resolution = 10,measure=MLJ.rms,kwargs...)
     range = Base.range(model, :lambda, lower=1e-2, upper=1000, scale=:log10)

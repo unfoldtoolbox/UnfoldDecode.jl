@@ -147,7 +147,7 @@ end;
 
 results_all = DataFrame();
 results_all = vcat(run_b2b(@formula 0 ~ 1  + animal + eye_angle),
-    # The first one takes `animal` and `eye_angle`, which are two independent independent variables that can impact the result into account
+    # The first one takes `animal` and `eye_angle`, which are two independent variables that can impact the result into account
     run_b2b(@formula 0 ~ 1  + animal + vegetable),
     # The second one takes `animal` and `vegetable`, which are two correlated independent variables in which only one variable really affects the result into account
     run_b2b(@formula 0 ~ 1  + animal + vegetable + eye_angle),
@@ -176,6 +176,17 @@ In the third diagram, when we have only `animal` and `vegetable`, we can see sim
 However, as we can see in the forth diagram, when `eye_angle` is introduced on top of the forth diagram, we find that vegetable has less effect on the results.
 
 In the second diagram, we can see that `continuous_random` does have no effect on the results, which is consistent with our expectation.
+
+#### Comparison of the results from different regression methods
+The results are somehow similiar for different regression methods, which means all can be used for BacktoBack algorithm.
+
+They fall into 3 categories, {Ridge, Lasso, LS}, {SVM}, and {Adaboost}.
+
+For the Ridge, Lasso, and LS regression, the results are almost the same and can clearly split the effect of different independent variables. However, these three methods share the same feature that there are peaks at certain time points, which we have no idea about it.
+
+For the SVM regression, the shape of the plot has two separate flattened peaks, which is the most ideal result.
+
+For the Adaboost regression, the result is similar to the SVM, but one problem with the result is that the value of 'continuous_random' is not 0 at the begining, which is not ideal. One possible reason is that the Adaboost algrithm choose random initial weight.
 
 ---
 

@@ -30,18 +30,20 @@ dat_3d .+= 0.1*rand(size(dat_3d)...);
 # #### Solver selection
 # Call the solver in UnfoldDecode
 
-# Here we've accomplished link to 3 different methods for regression needed in our algorithm: Ridge, LS, and SVM
+# Here we've accomplished link to 5 different methods for regression needed in our algorithm: Lasso, Ridge, LS, SVM, and Adaboost.
 
 # They can be chosen by refering to the parameter `solver_fun`
-b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun=UnfoldDecode.model_lsq);
-## b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun="LSRegressor")
-## b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun="SVMLinearRegressor")
+b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5);
+## b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun = UnfoldDecode.model_lasso);
+## b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun = UnfoldDecode.model_lsq);
+## b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun = UnfoldDecode.model_svm);
+## b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5, solver_fun = UnfoldDecode.model_ada);
 #
 
 
 # #### Generate the formula
 
-# It takes `condition` and `continuous`, which are two independent independent variables that can impact the result into account
+# It takes `condition` and `continuous`, which are two independent variables that can impact the result into account
 f = @formula 0 ~ 1 + condition + continuous;
 designDict = [Any => (f, range(0, 0.44, step = 1/100))];
 m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver);
