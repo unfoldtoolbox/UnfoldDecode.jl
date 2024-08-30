@@ -15,7 +15,7 @@ end
 DocMeta.setdocmeta!(UnfoldDecode, :DocTestSetup, :(using UnfoldDecode); recursive=true)
 
 makedocs(;
-    # modules=[UnfoldDecode],
+    modules=[UnfoldDecode],
     # authors="Benedikt V. Ehinger",
     authors="CXC2001",
     # repo="https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/{commit}{path}#{line}",

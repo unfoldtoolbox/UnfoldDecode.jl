@@ -19,6 +19,7 @@ Lastly, we compared the results of different functions. And SVM would be the mos
 - We provide a quick-start tutorial for people who not familiar with b2b solver to quickly get start. (docs/literate/BackToBack/Quick_Start_b2b.jl)
 - We provide a detailed explanation of the function of BacktoBack regression with a vivid example. (docs/literate/BackToBack/About_BacktoBack.jl)
 - We provide detailed comments for b2b_solver. (docs/literate/BackToBack/About_b2b.jl)
+- However, we encountered a problem that the documentation can only be seen in Live Server, but did not shown on the github. We tried to modified make.jl, but it did not work.
 
 #### Further working
 - We tried to do a unittest (test/runtests.jl), in which we built a simplified model, and compared the results using functions in backtoback regression in Julia to ones using sklearn in python (test/sklearn.py). But we encountered some problem with fitting. We tried by adding the test_utilities.jl and new_testcases.m from tests in Unfold.
