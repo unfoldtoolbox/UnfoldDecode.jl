@@ -70,7 +70,7 @@ dat_3d .+= 0.1*rand(size(dat_3d)...);
 # #### Solver selection
 # Call the solver in UnfoldDecode
 
-# Here we've accomplished link to 5 different methods for regression needed in our algorithm: Ridge, Lasso, LS, SVM, and Adaboost(not recomended).
+# Here we've accomplished link to 5 different methods for regression needed in our algorithm: Ridge, Lasso, LS, SVM, and Adaboost.
 
 # They can be chosen by refering to the parameter `solver_fun` (the default is `model_ridge`)
 b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5);
@@ -83,34 +83,34 @@ b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5);
 
 # #### Generate the formula
 ## We build a dataframe which will contain the 4 graphs generated according to the 4 different formulas (which will be mentioned later)
-results_all = DataFrame()
-for ix = 1:4
-    if ix == 1
-        f = @formula 0 ~ 1  + animal + eye_angle
-    ## The first one takes `animal` and `eye_angle`, which are two independent independent variables that can impact the result into account
-    elseif ix == 2
-        f = @formula 0 ~ 1  + animal + vegetable 
-    ## The second one takes `animal` and `vegetable`, which are two correlated independent variables in which only one variable really affects the result into account
-    elseif ix == 3
-        f = @formula 0 ~ 1  + animal + vegetable + eye_angle
-    ## The third one takes `animal` and `vegetable` and `eye_angle`, which are all variables mentioned above into account
-    elseif ix == 4
-        f = @formula 0 ~ 1 + animal + eye_angle + continuous_random + vegetable
-    ## The last one furtherly takes the randomly generated variable `continuous_random` into account
-    end
-    ## By comparing the results of the formulas mentioned above, we can see the effect of BacktoBack algorithm
+function run_b2b(f)
     ## Define a design dictionary according to the formula
-    designDict = [Any => (f, range(0, 0.44, step = 1/100))] 
+    designDict = [Any => (f, range(0, 0.44, step = 1/100))];
     ## Fit the model
-    m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver)
+    m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver);
+    nothing ## # hide
+
     ## Present the results in a graph
-    results = coeftable(m)
-    results.estimate = abs.(results.estimate)
-    results = results[results.coefname .!="(Intercept)",:]
-    results.formula .= string(f)
-    global results_all
-    results_all = vcat(results_all,results)
+    results = coeftable(m);
+    results.estimate = abs.(results.estimate);
+    results = results[results.coefname .!="(Intercept)",:];
+    results.formula .= string(f);
+    return results;
 end;
+
+results_all = DataFrame();
+results_all = vcat(run_b2b(@formula 0 ~ 1  + animal + eye_angle),
+    ## The first one takes `animal` and `eye_angle`, which are two independent variables that can impact the result into account
+    run_b2b(@formula 0 ~ 1  + animal + vegetable),
+    ## The second one takes `animal` and `vegetable`, which are two correlated independent variables in which only one variable really affects the result into account
+    run_b2b(@formula 0 ~ 1  + animal + vegetable + eye_angle),
+    ## The third one takes `animal` and `vegetable` and `eye_angle`, which are all variables mentioned above into account
+    run_b2b(@formula 0 ~ 1 + animal + eye_angle + continuous_random + vegetable));
+    ## The last one furtherly takes the randomly generated variable `continuous_random` into account
+    
+    ## By comparing the results of the formulas mentioned above, we can see the effect of BacktoBack algorithm
+nothing ## # hide
+    #
 
 # #### Plot the results
 plot_erp(results_all; mapping = (; row = :formula), axis = (xlabel = "Time [s]", ylabel = "Performance"))
