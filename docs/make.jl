@@ -17,7 +17,7 @@ DocMeta.setdocmeta!(UnfoldDecode, :DocTestSetup, :(using UnfoldDecode); recursiv
 makedocs(;
     modules=[UnfoldDecode],
     authors="Benedikt V. Ehinger",
-    repo="https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/CXC2001/UnfoldDecode.jl/{commit}{path}#{line}",
     sitename="UnfoldDecode.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
@@ -42,6 +42,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/unfoldtoolbox/UnfoldDecode.jl",
+    repo="github.com/CXC2001/UnfoldDecode.jl/",
     devbranch="main",
 )
