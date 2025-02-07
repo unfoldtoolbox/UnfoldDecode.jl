@@ -21,8 +21,8 @@ dat .= dat .+ 20 .* rand(size(dat)...)
 # We have two basis functions now, with two different timewindows. Let's see if it works!
 des = ["eventA" => (@formula(0 ~ 1 + condition + continuous), firbasis((-0.1, 1.0), 100)),
     "eventB" => (@formula(0 ~ 1 + continuous), firbasis((-0.3, 0.5), 100))]
-# For the fun of it, we choose a different solver 
-customsolver = (x, y) -> Unfold.solver_default(x, y; stderror=true)
+# To show that it is possible, we explicitly specify the solver
+customsolver = (x, y) -> Unfold.solver_default(x, y)
 uf = Unfold.fit(UnfoldModel, des, evt, dat[1, :]; solver=customsolver);
 plot_erp(coeftable(uf); mapping=(; col=:eventname))
 
@@ -35,7 +35,7 @@ ldaModel = LDA(method=:whiten, cov_w=SimpleCovariance(), cov_b=SimpleCovariance(
 
 uf_lda = UnfoldDecode.fit(UnfoldDecodingModel, des, evt, dat, ldaModel, "eventA" => :condition;
     nfolds=2,# only 2 folds to speed up computation
-    UnfoldFitkwargs=(; solver=customsolver), #customer solver for fun
+    unfold_fit_options=(; solver=customsolver), #customer solver for fun
     eventcolumn=:event, # actually the default, but maybe your event dataframe has a different name?
     multithreading=false) # who needs speed anyway :shrug:
 

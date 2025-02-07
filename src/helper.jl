@@ -32,8 +32,8 @@ function Unfold.coeftable(uf::UnfoldDecodingModel; measure=balanced_accuracy, av
 
 
     df = DataFrame(
-        :coefname => uf.target[2],
-        :eventname => uf.target[1],
+        :coefname => string.(uf.target[2]),
+        :eventname => string.(uf.target[1]),
         :split => repeat(1:length(uf.modelfit), inner=size(measures[1], 1)),
         :time => repeat(mf[1].times, outer=length(measures)),
         :estimate => vcat(measures...),

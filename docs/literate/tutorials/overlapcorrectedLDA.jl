@@ -16,7 +16,7 @@ dat .= dat .+ 20 .* rand(size(dat)...)
 
 # ## Overlap-model Definition
 # We have to define what model we want to use for overlap correction
-# We decide for a one-basisfunction model, with one covariate, from `-0.1` to `0.5` seconds afte the stimulus onset. Sampling rate `100` as in the simulation
+# We decide for a one-basisfunction model, with one one condition and one covariate, from `-0.1` to `0.5` seconds afte the stimulus onset. Sampling rate `100` as in the simulation
 des = [Any => (@formula(0 ~ 1 + condition + continuous), firbasis((-0.1, 1.0), 100))];
 # Fitting and visualizing a single channel of the model
 uf = Unfold.fit(UnfoldModel, des, evt, dat[1, :]);
@@ -27,7 +27,7 @@ plot_erp(coeftable(uf))
 using MLJ, MultivariateStats, MLJMultivariateStatsInterface
 LDA = @load LDA pkg = MultivariateStats
 uf_lda = Unfold.fit(UnfoldDecodingModel, des, evt, dat, LDA(), Any => :condition; nfolds=2) # 2 folds to speed up computation
-plot_erp(coeftable(uf_lda))
+plot_erp(coeftable(uf_lda); mapping=(; color=:coefname))
 
 # Voila, the model classified the correct period. 
 

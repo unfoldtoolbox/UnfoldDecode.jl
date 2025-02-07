@@ -6,14 +6,14 @@ Everything runs cross-validated with `nfolds`
 
 - `model`: By default LDA(), but could be any MLJ machine with specified parameters
 - `target`: String or Symbol with the `tbl[:,column]` to be decoded
-- `UnfoldFitkwargs`: optional Named Tuple as kwargs to provide to the initial "overlap-cleaning" modelfit, e.g. `UnfoldFitkwargs = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
+- `unfold_fit_options`: optional Named Tuple as kwargs to provide to the initial "overlap-cleaning" modelfit, e.g. `unfold_fit_options = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
 """
 function Unfold.fit(UnfoldDecodingModel, design,
     tbl,#::DataFrame,
     dat::AbstractMatrix,
     model::MLJ.Model,
     target::Pair;
-    nfolds=6, eventcolumn=:event, UnfoldFitkwargs=(;), multithreading=true)
+    nfolds=6, eventcolumn=:event, unfold_fit_options=(;), multithreading=true)
 
     tbl = deepcopy(tbl)
     # sort to split by neighbouring samples for overlap
@@ -35,10 +35,10 @@ function Unfold.fit(UnfoldDecodingModel, design,
 
         # XXX remove the boundary data to ensure no leakage
         uf_train = Unfold.fit(UnfoldLinearModelContinuousTime,
-            design, tbl, dat; eventcolumn=eventcolumn, UnfoldFitkwargs...)
+            design, tbl, dat; eventcolumn=eventcolumn, unfold_fit_options...)
 
         uf_test = Unfold.fit(UnfoldLinearModelContinuousTime,
-            design, tbltest, dat; eventcolumn=eventcolumn, UnfoldFitkwargs...)
+            design, tbltest, dat; eventcolumn=eventcolumn, unfold_fit_options...)
 
         # get overlap free single trails 
         X_train = singletrials(dat, uf_train, tbltrain, target[1], eventcolumn)

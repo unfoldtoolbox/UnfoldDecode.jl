@@ -33,8 +33,6 @@ end
 """
     solver_b2b(X, data::AbstractArray{T,3}; cross_val_reps=10, multithreading=true, show_progress=true, solver_G=model_ridge, solver_H=model_ridge, kwargs...)
 
-
-
 """
 function solver_b2b(                     # when T is a number, 
     X, # design matrix
@@ -77,7 +75,7 @@ function solver_b2b(                     # when T is a number,
     # reshape to conform to ch x time x pred
     beta = permutedims(beta, [3 1 2])
     modelinfo = Dict("W" => W, "E" => E, "cross_val_reps" => cross_val_reps) # no history implemented (yet?)
-    return Unfold.LinearModelFit(beta, modelinfo)
+    return Unfold.LinearModelFit{eltype(beta),3}(beta, modelinfo)
 end
 
 function gen_model_ridge()
@@ -93,7 +91,7 @@ function gen_model_lasso(; kwargs...)
 end
 
 function gen_model_svm(; kwargs...)
-    @load SVMLinearRegressor pkg = MLJScikitLearnInterface
+    @load SVMLinearRegressor pkg = MLJScikitLearnInterface verbosity = 0
     model = MLJScikitLearnInterface.SVMLinearRegressor()
     return model
 end
@@ -124,4 +122,3 @@ function _solve(tm, data, X)
 end
 _fitted_param(mtm::Machine) = Tables.matrix(fitted_params(mtm).best_fitted_params.coefs)[:, 2]
 _fitted_param(mtm) = fitted_params(mtm).coef
-

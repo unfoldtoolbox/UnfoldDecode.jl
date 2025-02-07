@@ -59,28 +59,22 @@ function run_b2b(f)
     return results
 end;
 
-# let's run a decoder without accounting for other variables:
+# let's run a decoder without accounting for the other factors
 
-results_all = DataFrame();
-for f = [@formula(0 ~ 1 + animal), @formula(0 ~ 1 + vegetable), @formula(0 ~ 1 + eye_movement_size)]
-    results_all = vcat(results_all, run_b2b(f))
-end
-plot_erp(results_all; axis=(xlabel="Time [s]", ylabel="Performance"))
+results_all = map(run_b2b, [@formula(0 ~ 1 + animal), @formula(0 ~ 1 + vegetable), @formula(0 ~ 1 + eye_movement_size)])
+plot_erp(vcat(results_all...); axis=(xlabel="Time [s]", ylabel="Performance"))
 
 # As one can see, all three variables can be decoded well. **Even though vegetable had no effect on the data!!** 
 
 # Let's now use B2B to take into account the correlation between `vegetable` and `eye_movement_size`:
-results_all = DataFrame();
-for f = [@formula(0 ~ 1 + vegetable), @formula(0 ~ 1 + eye_movement_size), @formula(0 ~ 1 + vegetable + eye_movement_size)]
-    results_all = vcat(results_all, run_b2b(f))
-end
-plot_erp(results_all; mapping=(; col=:coefname, color=:formula), axis=(xlabel="Time [s]", ylabel="Performance"))
 
-# As can be seen, when modelling both effects (green curve), the vegetable effect (correctly and as intended) vanishes. We now learned, that we can actually, indepedently decode only `eye_movement_size` 
+results_all = map(run_b2b, [@formula(0 ~ 1 + vegetable), @formula(0 ~ 1 + vegetable + eye_movement_size)])
+plot_erp(vcat(results_all...); mapping=(; color=:coefname, row=:formula), axis=(xlabel="Time [s]", ylabel="Performance"))
+
+# As can be seen, when modelling both effects (lower plot), the vegetable effect (correctly and as intended) vanishes. We now learned, that decodable information is only in  `eye_movement_size`, but not `vegetable`, which is "just" correlated
 
 # For completeness sake, we also include the comparison to a non-correlated effect
-results_all = DataFrame();
-for f = [@formula(0 ~ 1 + animal), @formula(0 ~ 1 + animal + vegetable + eye_movement_size)]
-    results_all = vcat(results_all, run_b2b(f))
-end
-plot_erp(results_all; mapping=(; col=:coefname, color=:formula), axis=(xlabel="Time [s]", ylabel="Performance"))
+results_all = map(run_b2b, [@formula(0 ~ 1 + animal), @formula(0 ~ 1 + animal + vegetable + eye_movement_size)])
+plot_erp(vcat(results_all...); mapping=(; color=:coefname, row=:formula), axis=(xlabel="Time [s]", ylabel="Performance"))
+
+# the animal effect remains untouched :)
