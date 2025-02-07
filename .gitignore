@@ -1,9 +1,16 @@
 *.jl.*.cov
 *.jl.cov
 *.jl.mem
-/Manifest.toml
-/docs/Manifest.toml
-/docs/build/
+*.rej
+.DS_Store
+.benchmarkci
+Manifest.toml
+benchmark/*.json
+coverage
+docs/build/
+env
+node_modules
+docs/src/generated
+docs/Manifest.toml
 .CondaPkg
-# /docs/src/literate/*/*.md
-/docs/src/generated
+

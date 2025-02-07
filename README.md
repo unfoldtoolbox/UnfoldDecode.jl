@@ -1,8 +1,17 @@
 # [![logo_UnfoldDecode jl_120px](https://github.com/unfoldtoolbox/UnfoldDecode.jl/assets/57703446/965b93aa-33e1-420e-a707-1fe8d7e3bcbe)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/tree/main)
 
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/dev/)
-[![Build Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/CI.yml?query=branch%3Amain)
+
+[![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/stable)
+[![In development documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/dev)
+[![Build Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/workflows/Test/badge.svg)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions)
+[![Test workflow status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Test.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Test.yml?query=branch%3Amain)
+[![Lint workflow Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Lint.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Lint.yml?query=branch%3Amain)
+[![Docs workflow Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Docs.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Docs.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/unfoldtoolbox/UnfoldDecode.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/unfoldtoolbox/UnfoldDecode.jl)
+[![DOI](https://zenodo.org/badge/DOI/FIXME)](https://doi.org/FIXME)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![All Contributors](https://img.shields.io/github/all-contributors/unfoldtoolbox/UnfoldDecode.jl?labelColor=5e1ec7&color=c0ffee&style=flat-square)](#contributors)
+
 
 |rERP|EEG visualisation|EEG Simulations|BIDS pipeline|Decode EEG data|Statistical testing|
 |---|---|---|---|---|---|
@@ -83,9 +92,9 @@ You are very welcome to raise issues and start pull requests!
 3. Edit [make.jl](https://github.com/unfoldtoolbox/Unfold.jl/blob/main/docs/make.jl) with a reference to `docs/src/generated/FOLDER/FILENAME.md`.
 
 
-## Citation
+## How to Cite
 
-If you use this code, please cite this code + the appropriate paper/algorithm
+If you use UnfoldDecode.jl in your work, please cite using the reference given in [CITATION.cff](https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/main/CITATION.cff) AND the respective algorithm.
 
 ## Acknowledgements
 
