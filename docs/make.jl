@@ -19,7 +19,7 @@ DocMeta.setdocmeta!(UnfoldDecode, :DocTestSetup, :(using UnfoldDecode); recursiv
 makedocs(;
     modules=[UnfoldDecode],
     # authors="Benedikt V. Ehinger",
-    authors=["Benedikt V. Ehinger", "CXC2001"],
+    authors="Benedikt V. Ehinger, CXC2001",
     # repo="https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/{commit}{path}#{line}",
     # repo="https://github.com/CXC2001/UnfoldDecode.jl/blob/{commit}{path}#{line}",
     # repo=Documenter.Remotes.GitHub("CXC2001/UnfoldDecode.jl"),
@@ -31,6 +31,7 @@ makedocs(;
         edit_link="main",
         assets=String[],
     ),
+    pagesonly=true, # render only what is specified below
     pages=[
         "Home" => "index.md",
         "tutorials" => [
