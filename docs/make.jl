@@ -14,29 +14,28 @@ for subfolder ∈ ["explanations", "HowTo", "tutorials", "backToBack"]
 end
 
 
-DocMeta.setdocmeta!(UnfoldDecode, :DocTestSetup, :(using UnfoldDecode); recursive=true)
+DocMeta.setdocmeta!(UnfoldDecode, :DocTestSetup, :(using UnfoldDecode); recursive = true)
 
 makedocs(;
-    modules=[UnfoldDecode],
+    modules = [UnfoldDecode],
     # authors="Benedikt V. Ehinger",
-    authors="Benedikt V. Ehinger, CXC2001",
+    authors = "Benedikt V. Ehinger, CXC2001",
     # repo="https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/{commit}{path}#{line}",
     # repo="https://github.com/CXC2001/UnfoldDecode.jl/blob/{commit}{path}#{line}",
     # repo=Documenter.Remotes.GitHub("CXC2001/UnfoldDecode.jl"),
-    sitename="UnfoldDecode.jl",
-    format=Documenter.HTML(;
+    sitename = "UnfoldDecode.jl",
+    format = Documenter.HTML(;
         # prettyurls=get(ENV, "CI", "false") == "true",
-        prettyurls=get(ENV, "CI", nothing) == "true",
+        prettyurls = get(ENV, "CI", nothing) == "true",
         # canonical="https://behinger.github.io/UnfoldDecode.jl",
-        edit_link="main",
-        assets=String[],
+        edit_link = "main",
+        assets = String[],
     ),
-    pagesonly=true, # render only what is specified below
-    pages=[
+    pagesonly = true, # render only what is specified below
+    pages = [
         "Home" => "index.md",
-        "tutorials" => [
-            "Overlap corrected LDA" => "generated/tutorials/overlapcorrectedLDA.md"
-        ],
+        "tutorials" =>
+            ["Overlap corrected LDA" => "generated/tutorials/overlapcorrectedLDA.md"],
         "HowTo" => [
             "Overlap corrected, multi-event, many options, LDA" => "generated/HowTo/overlapcorrectedLDA_options.md",
         ],
@@ -48,7 +47,4 @@ makedocs(;
     ],
 )
 
-deploydocs(;
-    repo="github.com/unfoldtoolbox/UnfoldDecode.jl.git",
-    devbranch="main",
-)
+deploydocs(; repo = "github.com/unfoldtoolbox/UnfoldDecode.jl.git", devbranch = "main")

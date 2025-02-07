@@ -8,7 +8,7 @@ using Unfold
 # This approach follows the work of the Deoulle Group, especially Gal Vishne's work as published 2023: https://doi.org/10.1101/2023.06.28.546397
 
 # ## Simulation
-# We start with simulating some continuous, overlapping data with two conditions. 
+# We start with simulating some continuous, overlapping data with two conditions.
 # As of now, `UnfoldSim` doesnt support multichannel, so we simply repeat the channel and add some noise`
 dat, evt = UnfoldSim.predef_eeg()
 dat = repeat(dat', 5)
@@ -26,9 +26,8 @@ plot_erp(coeftable(uf))
 # Following the [MLJ Modelzoo](https://alan-turing-institute.github.io/MLJ.jl/dev/list_of_supported_models/) we have to do the following to load an LDA model
 using MLJ, MultivariateStats, MLJMultivariateStatsInterface
 LDA = @load LDA pkg = MultivariateStats
-uf_lda = Unfold.fit(UnfoldDecodingModel, des, evt, dat, LDA(), Any => :condition; nfolds=2) # 2 folds to speed up computation
-plot_erp(coeftable(uf_lda); mapping=(; color=:coefname))
+uf_lda =
+    Unfold.fit(UnfoldDecodingModel, des, evt, dat, LDA(), Any => :condition; nfolds = 2) # 2 folds to speed up computation
+plot_erp(coeftable(uf_lda); mapping = (; color = :coefname))
 
-# Voila, the model classified the correct period. 
-
-
+# Voila, the model classified the correct period.

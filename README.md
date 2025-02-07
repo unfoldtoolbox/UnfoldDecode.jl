@@ -1,6 +1,5 @@
 # [![logo_UnfoldDecode jl_120px](https://github.com/unfoldtoolbox/UnfoldDecode.jl/assets/57703446/965b93aa-33e1-420e-a707-1fe8d7e3bcbe)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/tree/main)
 
-
 [![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/stable)
 [![In development documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/dev)
 [![Build Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/workflows/Test/badge.svg)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions)
@@ -12,10 +11,9 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![All Contributors](https://img.shields.io/github/all-contributors/unfoldtoolbox/UnfoldDecode.jl?labelColor=5e1ec7&color=c0ffee&style=flat-square)](#contributors)
 
-
 |rERP|EEG visualisation|EEG Simulations|BIDS pipeline|Decode EEG data|Statistical testing|
 |---|---|---|---|---|---|
-| <a href="https://github.com/unfoldtoolbox/Unfold.jl/tree/main"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623787-757575d0-aeb9-4d94-a5f8-832f13dcd2dd.png"></a> | <a href="https://github.com/unfoldtoolbox/UnfoldMakie.jl"><img  src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623793-37af35a0-c99c-4374-827b-40fc37de7c2b.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldSim.jl"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623795-328a4ccd-8860-4b13-9fb6-64d3df9e2091.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldBIDS.jl"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622460-2956ca20-9c48-4066-9e50-c5d25c50f0d1.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldDecode.jl"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622487-802002c0-a1f2-4236-9123-562684d39dcf.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldStats.jl"><img  src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623799-4c8f2b5a-ea84-4ee3-82f9-01ef05b4f4c6.png"></a>|
+| <a href="https://github.com/unfoldtoolbox/Unfold.jl/tree/main"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623787-757575d0-aeb9-4d94-a5f8-832f13dcd2dd.png" alt="unfold"></a> | <a href="https://github.com/unfoldtoolbox/UnfoldMakie.jl"><img  alt="UnfoldMakie"src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623793-37af35a0-c99c-4374-827b-40fc37de7c2b.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldSim.jl"><img alt="UnfoldSim" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623795-328a4ccd-8860-4b13-9fb6-64d3df9e2091.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldBIDS.jl"><img alt="UnfoldBIDS" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622460-2956ca20-9c48-4066-9e50-c5d25c50f0d1.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldDecode.jl"><img alt="UnfoldDecode" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622487-802002c0-a1f2-4236-9123-562684d39dcf.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldStats.jl"><img  alt="UnfoldStats" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623799-4c8f2b5a-ea84-4ee3-82f9-01ef05b4f4c6.png"></a>|
 
 Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experiments.
 
@@ -24,7 +22,7 @@ Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experimen
 
 Currently the following algorithms are implemented:
 
-- [back-to-back regession](https://doi.org/10.1016/j.neuroimage.2020.117028) (`solver_b2b`, [tutorial how to use](https://unfoldtoolbox.github.io/Unfold.jl/dev/HowTo/custom_solvers/#Back2Back-regression)) 
+- [back-to-back regession](https://doi.org/10.1016/j.neuroimage.2020.117028) (`solver_b2b`, [tutorial how to use](https://unfoldtoolbox.github.io/Unfold.jl/dev/HowTo/custom_solvers/#Back2Back-regression))
 - overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
 
 ¹ actually any MLJ supported classification/regression model is already supported (beta)
@@ -32,6 +30,7 @@ Currently the following algorithms are implemented:
 ## Install
 
 ### Julia
+
 <details>
 <summary>Click to expand</summary>
 
@@ -52,11 +51,13 @@ AppStore -> JuliaUp,  or `winget install julia -s msstore` in CMD
 ### UnfoldDecode
 
 Not yet registered thus you have to do:
+
 ```julia
 using Pkg
 Pkg.add(url="https://github.com/unfoldtoolbox/UnfoldDecode.jl")
 using UnfoldDecode
 ```
+
 once it is registered, this will simplify to `Pkg.add("UnfoldDecode")`
 
 ## Quickstart
@@ -71,9 +72,11 @@ uf_lda = fit(UnfoldDecodingModel,des,evt,dat,LDA(),"fixation"=>:condition)
 Does the trick - you should probably do an Unfold.jl tutorial first though!
 
 ## Loading Data
+
 have a look at PyMNE.jl to read the data. You need a data-matrix + DataFrames.jl event table (similar to EEGlabs EEG.events)
 
 ## Limitations
+
 - Not thoroughly tested, no unit-tests yet!
 - Missing features: e.g. No time generalization is available, but straight forward to implement with the current tooling.
 
@@ -91,7 +94,6 @@ You are very welcome to raise issues and start pull requests!
 2. Literate.jl converts the `.jl` file to a `.md` automatically and places it in `docs/src/generated/FOLDER/FILENAME.md`.
 3. Edit [make.jl](https://github.com/unfoldtoolbox/Unfold.jl/blob/main/docs/make.jl) with a reference to `docs/src/generated/FOLDER/FILENAME.md`.
 
-
 ## How to Cite
 
 If you use UnfoldDecode.jl in your work, please cite using the reference given in [CITATION.cff](https://github.com/unfoldtoolbox/UnfoldDecode.jl/blob/main/CITATION.cff) AND the respective algorithm.
@@ -100,7 +102,7 @@ If you use UnfoldDecode.jl in your work, please cite using the reference given i
 
 Funded by Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany´s Excellence Strategy – EXC 2075 – 390740016
 
-## Contributions
+## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -111,10 +113,7 @@ Funded by Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) unde
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-
-
-This project follows the [all-contributors](https://allcontributors.org/docs/en/specification) specification. 
+This project follows the [all-contributors](https://allcontributors.org/docs/en/specification) specification.
 
 Contributions of any kind welcome!
 You can find the emoji key for the contributors [here](https://github.com/unfoldtoolbox/Unfold.jl/blob/main/docs/contrib-emoji.md).
-

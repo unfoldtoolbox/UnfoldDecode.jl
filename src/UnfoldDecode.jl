@@ -12,7 +12,7 @@ using ProgressMeter
 using LinearAlgebra
 using Logging # to deactivate some MLJ output
 
-using MLJLinearModels,Tables
+using MLJLinearModels, Tables
 # using MLJScikitLearnInterface
 using MultivariateStats
 using MLJMultivariateStatsInterface
