@@ -1,6 +1,7 @@
 using UnfoldDecode
 using Test
 
+include("setup.jl")
 #=
 Don't add your tests to runtests.jl. Instead, create files named
 

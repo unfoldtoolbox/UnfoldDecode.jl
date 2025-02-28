@@ -7,7 +7,7 @@ using Literate
 
 GENERATED = joinpath(@__DIR__, "src", "generated")
 SOURCE = joinpath(@__DIR__, "literate")
-for subfolder ∈ ["explanations", "HowTo", "tutorials", "backToBack"]
+for subfolder ∈ ["explanations", "HowTo", "tutorials", "reference"]
     local SOURCE_FILES = Glob.glob(subfolder * "/*.jl", SOURCE)
     foreach(fn -> Literate.markdown(fn, GENERATED * "/" * subfolder), SOURCE_FILES)
 
