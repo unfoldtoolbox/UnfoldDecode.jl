@@ -1,0 +1,19 @@
+# Changes here will be overwritten by Copier
+AddCopierCI: false
+AnswerStrategy: recommended-ask
+Authors: Benedikt V. Ehinger
+CheckExplicitImports: false
+CodeOfConductContact: Benedikt V. Ehinger
+ConfigIndentation: 2
+JuliaIndentation: 4
+JuliaMinVersion: '1'
+License: MIT
+LicenseCopyrightHolders: Benedikt V. Ehinger
+MarkdownIndentation: 2
+PackageName: UnfoldDecode
+PackageOwner: unfoldtoolbox
+PackageUUID: ec0f67a1-ae9f-4687-b20b-bd39d33e72da
+RunJuliaNightlyOnCI: false
+UseCirrusCI: false
+_commit: v0.14.1
+_src_path: https://github.com/JuliaBesties/BestieTemplate.jl
