@@ -11,14 +11,14 @@
 Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experiments.
 
 > [!WARNING]
-> No unit-tests implemented as of 2024-01-09 - use at your own risk!
+> Still little unit-tests implemented as of 2025-02-28 - use at your own risk!
 
 Currently the following algorithms are implemented:
 
 - [back-to-back regession](https://doi.org/10.1016/j.neuroimage.2020.117028) (`solver_b2b`, [tutorial how to use](https://unfoldtoolbox.github.io/Unfold.jl/dev/HowTo/custom_solvers/#Back2Back-regression)) 
 - overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
 
-¹ actually any MLJ supported classification/regression model is already supported (beta)
+¹ actually any MLJ supported classification/regression model is already supported
 
 ## Install
 
