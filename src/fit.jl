@@ -1,12 +1,35 @@
-
 """
-using Unfold: @maybe_threads
-Use UnfoldLinearModelContinuous time to remove all overlap from an event. Use the `model` classifier to predict the EEG data.
-Everything runs cross-validated with `nfolds`
+    Unfold.fit(
+        UnfoldDecodingModel,
+        design,
+        tbl::DataFrame,
+        dat::AbstractMatrix,
+        model::MLJ.Model,
+        target::Pair;
+        nfolds = 6,
+        eventcolumn = :event,
+        unfold_fit_options = (;),
+        multithreading = true,
+    )
+Use `UnfoldDecodingModel` to apply overlap correction in a cross-validated way, and perform decoding on the resulting data
 
-- `model`: By default LDA(), but could be any MLJ machine with specified parameters
-- `target`: String or Symbol with the `tbl[:,column]` to be decoded
-- `unfold_fit_options`: optional Named Tuple as kwargs to provide to the initial "overlap-cleaning" modelfit, e.g. `unfold_fit_options = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
+# Arguments
+- `design::`: An Unfold-design vector, e.g. `["eventA"=>(@formula(y~1+condition),firbasis((-0.1,1),100)]`
+- `tbl::DataFrame`: the events, as in a normal Unfold Model
+- `data::AbstractMatrix`:  the continuous EEG data, ch x time
+- `model::MLJModelInterface.Probabilistic`: By default LDA() is used, but could be other MLJ machines
+- `target::Pair`: A eventtype->column, String or Symbol pair, indicating which event and `tbl[:,column]` is the target to be decoded. E.g. `"eventA" => :condition`
+
+
+# Keyword arguments
+- `nfolds::Int = 6`: number of cross-validation folds
+- `eventcolumn::Union{Symbol,String} = :event` - the column in `tbl` to differentiate the basisfunctions as defined in `design`
+- `unfold_fit_options`: optional `NamedTuple` of arguments, provided to the initial "overlap-cleaning" `Unfold.fit` function, e.g. `unfold_fit_options = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
+- `multithreading::Bool = true`: Activate/deactivate multi-threading over time-points
+
+# Returns
+- `result::UnfoldDecodingModel` : An Unfold-type model that you could inspect e.g. via `coef(result)`
+
 """
 function Unfold.fit(
     UnfoldDecodingModel,
@@ -32,8 +55,7 @@ function Unfold.fit(
 
 
     fits = Array{DecodingFit}(undef, length(train_test))
-    #Unfold.@maybe_threads multithreading
-    for split = 1:length(train_test)
+    Unfold.@maybe_threads multithreading for split = 1:length(train_test)
 
 
         tbltrain = @view tbl[train_test[split][1], :]
