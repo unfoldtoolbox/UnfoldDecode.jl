@@ -24,6 +24,7 @@ makedocs(;
     # repo="https://github.com/CXC2001/UnfoldDecode.jl/blob/{commit}{path}#{line}",
     # repo=Documenter.Remotes.GitHub("CXC2001/UnfoldDecode.jl"),
     sitename = "UnfoldDecode.jl",
+    warnonly = true,
     format = Documenter.HTML(;
         # prettyurls=get(ENV, "CI", "false") == "true",
         prettyurls = get(ENV, "CI", nothing) == "true",
@@ -40,9 +41,11 @@ makedocs(;
             "Overlap corrected, multi-event, many options, LDA" => "generated/HowTo/overlapcorrectedLDA_options.md",
         ],
         "BackToBack" => [
-            "Quick Start b2b" => "generated/backToBack/Quick_Start_b2b.md",
-            "About Back-to-Back Decoding" => "generated/backToBack/About_BacktoBack.md",
-            "About b2b" => "generated/backToBack/About_b2b.md",
+            "Tutorials" =>
+                ["Quick Start b2b" => "generated/tutorials/b2b_quickstart.md"],
+            "Explanations" => ["Why Back2Back" => "generated/explanations/b2b_why.md"],
+            "Reference" =>
+                ["Algorithm choice" => "generated/reference/b2b_algorithms.md"],
         ],
     ],
 )
