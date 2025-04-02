@@ -5,7 +5,9 @@ using UnfoldDecode
 using DataFrames
 using Statistics
 include("../../example_rename_events.jl")
-# # Motivation for BacktoBack
+
+#
+# # [Motivation for BacktoBack](@id explainer-b2b)
 # ## Introduction
 
 # “Back-to-Back” regression (B2B) is an approach to estimate the decoding performance from a set of correlated factors.
