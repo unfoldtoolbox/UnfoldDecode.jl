@@ -4,16 +4,10 @@ CurrentModule = UnfoldDecode
 
 # UnfoldDecode.jl Documentation
 
-Welcome to [UnfoldDecode.jl](https://github.com/unfoldtoolbox/UnfoldDecode.jl)
-
 ```@raw html
 <div style="width:60%; margin: auto;">
 </div>
 ```
-
-<!-- Documentation for [UnfoldDecode](https://github.com/behinger/UnfoldDecode.jl). -->
-Documentation for [UnfoldDecode](https://github.com/CXC2001/UnfoldDecode.jl).
-
 In UnfoldDecode.jl we develop new approaches, collect other algorithms, and provide tutorials, to decode overlapping and/or covariate-heavy EEG data.
 
 ## Key features
@@ -37,12 +31,12 @@ For more detailed instructions please refer to [Installing Julia & Unfold Packag
 
 ### First steps B2B
 
-📌 Goal: Learn why to use back-to-back regression, next learn how easy it is to apply it to your data /
+📌 Goal: Learn why to use back-to-back regression, next learn how easy it is to apply it to your data \
 🔗 [B2B explained](@ref explainer-b2b), [B2B quickstart](@ref quickstart-b2b)
 
 ### First Steps Overlap correction
 
-📌 Goal: Learn how to run overlap corrected Unfold-style deconvolution models /
+📌 Goal: Learn how to run overlap corrected Unfold-style deconvolution models \
 🔗 [overlap-corrected decoding tutorial](@ref tutorial-overlap-decoding)
 
 ## Statement of need
