@@ -4,7 +4,7 @@ using UnfoldMakie
 using CairoMakie
 using Unfold
 
-# # Overlap-corrected decoding
+# # [Overlap-corrected decoding tutorial](@id tutorial-overlap-decoding)
 # This approach follows the work of the Deoulle Group, especially Gal Vishne's work as published 2023: https://doi.org/10.1101/2023.06.28.546397
 
 # ## Simulation

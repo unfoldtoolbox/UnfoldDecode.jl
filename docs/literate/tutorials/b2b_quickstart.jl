@@ -6,7 +6,7 @@ using UnfoldDecode
 using DataFrames
 using Statistics
 
-# # Quick start of b2b solver
+# # [Quick start of Back-To-Back (b2b)](@id quickstart-b2b)
 
 # ## Data generation
 # #### Simulation and data collection
