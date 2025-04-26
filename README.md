@@ -1,7 +1,7 @@
 # [![logo_UnfoldDecode jl_120px](https://github.com/unfoldtoolbox/UnfoldDecode.jl/assets/57703446/965b93aa-33e1-420e-a707-1fe8d7e3bcbe)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/tree/main)
 
-[![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/stable)
-[![In development documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDecode.jl/dev)
+[![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDocs/UnfoldDecode.jl/stable)
+[![In development documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://unfoldtoolbox.github.io/UnfoldDocs/UnfoldDecode.jl/dev)
 [![Build Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/workflows/Test/badge.svg)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions)
 [![Test workflow status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Test.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Test.yml?query=branch%3Amain)
 [![Lint workflow Status](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Lint.yml/badge.svg?branch=main)](https://github.com/unfoldtoolbox/UnfoldDecode.jl/actions/workflows/Lint.yml?query=branch%3Amain)
@@ -11,9 +11,9 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![All Contributors](https://img.shields.io/github/all-contributors/unfoldtoolbox/UnfoldDecode.jl?labelColor=5e1ec7&color=c0ffee&style=flat-square)](#contributors)
 
-|rERP|EEG visualisation|EEG Simulations|BIDS pipeline|Decode EEG data|Statistical testing|
-|---|---|---|---|---|---|
-| <a href="https://github.com/unfoldtoolbox/Unfold.jl/tree/main"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623787-757575d0-aeb9-4d94-a5f8-832f13dcd2dd.png" alt="unfold"></a> | <a href="https://github.com/unfoldtoolbox/UnfoldMakie.jl"><img  alt="UnfoldMakie"src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623793-37af35a0-c99c-4374-827b-40fc37de7c2b.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldSim.jl"><img alt="UnfoldSim" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623795-328a4ccd-8860-4b13-9fb6-64d3df9e2091.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldBIDS.jl"><img alt="UnfoldBIDS" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622460-2956ca20-9c48-4066-9e50-c5d25c50f0d1.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldDecode.jl"><img alt="UnfoldDecode" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622487-802002c0-a1f2-4236-9123-562684d39dcf.png"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldStats.jl"><img  alt="UnfoldStats" src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623799-4c8f2b5a-ea84-4ee3-82f9-01ef05b4f4c6.png"></a>|
+|Estimation|Visualisation|Simulation|BIDS pipeline|Decoding|Statistics|MixedModelling|
+|---|---|---|---|---|---|---|
+| <a href="https://github.com/unfoldtoolbox/Unfold.jl/tree/main"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623787-757575d0-aeb9-4d94-a5f8-832f13dcd2dd.png" alt="Unfold.jl Logo"></a> | <a href="https://github.com/unfoldtoolbox/UnfoldMakie.jl"><img  src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623793-37af35a0-c99c-4374-827b-40fc37de7c2b.png" alt="UnfoldMakie.jl Logo"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldSim.jl"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623795-328a4ccd-8860-4b13-9fb6-64d3df9e2091.png" alt="UnfoldSim.jl Logo"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldBIDS.jl"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622460-2956ca20-9c48-4066-9e50-c5d25c50f0d1.png" alt="UnfoldBIDS.jl Logo"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldDecode.jl"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277622487-802002c0-a1f2-4236-9123-562684d39dcf.png" alt="UnfoldDecode.jl Logo"></a>|<a href="https://github.com/unfoldtoolbox/UnfoldStats.jl"><img  src="https://github-production-user-asset-6210df.s3.amazonaws.com/10183650/277623799-4c8f2b5a-ea84-4ee3-82f9-01ef05b4f4c6.png" alt="UnfoldStats.jl Logo"></a>|<a href=""><img src="https://github.com/user-attachments/assets/ffb2bba6-3a30-48b7-9849-7d4e7195b297" alt="UnfoldMixedModels.jl logo"></a>|
 
 Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experiments.
 
@@ -22,7 +22,7 @@ Beta-stage toolbox to decode ERPs with overlap, e.g. from eye-tracking experimen
 
 Currently the following algorithms are implemented:
 
-- [back-to-back regession](https://doi.org/10.1016/j.neuroimage.2020.117028) (`solver_b2b`, [tutorial how to use](https://unfoldtoolbox.github.io/Unfold.jl/dev/HowTo/custom_solvers/#Back2Back-regression))
+- [back-to-back regession](https://doi.org/10.1016/j.neuroimage.2020.117028) (`solver_b2b`, [tutorial how to use](https://unfoldtoolbox.github.io/UnfoldDocs/Unfold.jl/dev/HowTo/custom_solvers/#Back2Back-regression))
 - overlap corrected LDA¹ proposed by [Gal Vishne, Leon Deouell et al.](https://doi.org/10.1101/2023.06.28.546397) is implemented, but more to follow.
 
 ¹ actually any MLJ supported classification/regression model is already supported
