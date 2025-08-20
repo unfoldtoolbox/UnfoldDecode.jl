@@ -4,7 +4,7 @@ using UnfoldSim
 using UnfoldDecode
 using DataFrames
 using Statistics
-include("../../example_rename_events.jl")
+include("../../../example_rename_events.jl")
 
 #
 # # [Motivation for BacktoBack](@id explainer-b2b)
