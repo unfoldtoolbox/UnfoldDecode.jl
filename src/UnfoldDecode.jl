@@ -6,7 +6,7 @@ import Unfold.fit
 using Unfold: @maybe_threads
 using MLJ
 using MultivariateStats
-#import MLJBase
+import MLJBase
 using MLBase
 using DataFrames
 using ProgressMeter
