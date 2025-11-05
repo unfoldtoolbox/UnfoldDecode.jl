@@ -12,7 +12,7 @@ include("../../../example_rename_events.jl")
 
 # “Back-to-Back” regression (B2B) is an approach to estimate the decoding performance from a set of correlated factors.
 # Why do we need this? Let's have a look at a simple example:
-# ![My Image](assets/dog_and_cat.png)
+# ![My Image](dog_and_cat.png)
 #
 # Imagine we record EEG data from an eyetracking experiment, and investigate each fixation (a resting period of the eye) as an event for an ERP.
 # Imagine, we have both cats and dogs, but that we also make large and small eye-movements.
@@ -30,7 +30,7 @@ evts.vegetable .=
     ["tomato", "carrot"][1 .+ (evts.eye_movement_size .+ 10 .* rand(size(evts, 1)) .> 7.5)];
 cor(evts.eye_movement_size, evts.vegetable .== "carrot")
 
-# ![My Image](assets/dog_and_cat_and_vegetable.png)
+# ![My Image](dog_and_cat_and_vegetable.png)
 
 # Summarized, we have three independent variables: `animal`, `eye_movement_size`, and `vegetable`, with the latter two being correlated.
 
