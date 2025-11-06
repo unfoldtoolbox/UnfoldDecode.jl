@@ -12,7 +12,7 @@ include("../../../example_rename_events.jl")
 
 # “Back-to-Back” regression (B2B) is an approach to estimate the decoding performance from a set of correlated factors.
 # Why do we need this? Let's have a look at a simple example:
-# ![My Image](./assets/dog_and_cat.png)
+# ![My Image](../../assets/dog_and_cat.png)
 #
 # Imagine we record EEG data from an eyetracking experiment, and investigate each fixation (a resting period of the eye) as an event for an ERP.
 # Imagine, we have both cats and dogs, but that we also make large and small eye-movements.
@@ -21,7 +21,7 @@ include("../../../example_rename_events.jl")
 # #### Simulation and data collection
 # Collect the data genarated by UnfoldSim, and add certian level of noise
 dat, evts = UnfoldSim.predef_eeg(; noiselevel = 0.1, return_epoched = true);
-evts = example_rename_events(evts)
+evts = example_rename_events(evts);
 
 # #### Data further generating
 # To make the example more impressive, let's add an orthogonal variable `vegetable`. But this variable is special:
@@ -30,7 +30,7 @@ evts.vegetable .=
     ["tomato", "carrot"][1 .+ (evts.eye_movement_size .+ 10 .* rand(size(evts, 1)) .> 7.5)];
 cor(evts.eye_movement_size, evts.vegetable .== "carrot")
 
-# ![My Image](./assets/dog_and_cat_and_vegetable.png)
+# ![My Image](../../assets/dog_and_cat_and_vegetable.png)
 
 # Summarized, we have three independent variables: `animal`, `eye_movement_size`, and `vegetable`, with the latter two being correlated.
 
