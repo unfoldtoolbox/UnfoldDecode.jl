@@ -4,14 +4,14 @@ using UnfoldSim
 using UnfoldDecode
 using DataFrames
 using Statistics
-include("../../example_rename_events.jl")
+include("../../../example_rename_events.jl")
 # # Comparison of different solvers for G and H
 # Let's prepare some data again
 dat, evts = UnfoldSim.predef_eeg(; noiselevel = 0.1, return_epoched = true);
 dat_3d = permutedims(repeat(dat, 1, 1, 20), [3 1 2]);
 dat_3d .+= range(5, 20, size(dat_3d, 1)) .* rand(size(dat_3d)...); # vary the noise per channel
 evts.correlated .=
-    ["tomato", "carrot"][1 .+ (evts.continuous.+10 .* rand(size(evts, 1)).>7.5)];
+    ["tomato", "carrot"][1 .+ (evts.continuous .+ 10 .* rand(size(evts, 1)) .> 7.5)];
 
 # #### Comparison of the results from different regression methods
 function run_b2b(solver_G, solver_H; kwargs...)
@@ -26,7 +26,7 @@ function run_b2b(solver_G, solver_H; kwargs...)
 
     results = coeftable(m)
     results.estimate = abs.(results.estimate)
-    results = results[results.coefname.!="(Intercept)", :]
+    results = results[results.coefname .!= "(Intercept)", :]
     results.solver_G .= string(solver_G)
     results.solver_H .= string(solver_H)
     return results
