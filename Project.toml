@@ -1,7 +1,7 @@
 name = "UnfoldDecode"
 uuid = "ec0f67a1-ae9f-4687-b20b-bd39d33e72da"
-authors = ["Benedikt V. Ehinger"]
 version = "0.1.1"
+authors = ["Benedikt V. Ehinger"]
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
@@ -23,7 +23,7 @@ DataFrames = "1"
 LinearAlgebra = "1"
 Logging = "1"
 MLBase = "0.9"
-MLJ = "0.20,0.21"
+MLJ = "0.20,0.21, 0.23"
 MLJBase = "1.9.2"
 MLJLinearModels = "0.10"
 MLJMultivariateStatsInterface = "0.5.3"
