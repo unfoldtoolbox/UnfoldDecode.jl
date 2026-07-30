@@ -12,7 +12,7 @@ designDict = [Any => (f, range(0, 0.44, length = size(dat_3d, 2)))]
 @testset "b2b tests" begin
     b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5)
     m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver)
-    @test size(coef(m)) == (1, 45, 3)
+    @test size(coef(m)) == (1, 44, 3)
 
 
 end
@@ -21,7 +21,7 @@ end
 @testset "b2b tests" begin
     b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5)
     m = Unfold.fit(UnfoldModel, designDict, evts, dat_3d; solver = b2b_solver)
-    @test size(coef(m)) == (1, 45, 3)
+    @test size(coef(m)) == (1, 44, 3)
 end
 
 @testset "b2b algorithms" begin
