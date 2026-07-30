@@ -7,7 +7,7 @@ dat_3d = permutedims(repeat(dat, 1, 1, 3), [3 1 2]);
 dat_3d .+= range(5, 20, size(dat_3d, 1)) .* rand(size(dat_3d)...); # vary the noise per channel
 
 f = @formula(0 ~ 1 + condition + continuous)
-designDict = [Any => (f, range(0, 0.44, step = 1 / 100))]
+designDict = [Any => (f, range(0, 0.44, length = size(dat_3d, 2)))]
 
 @testset "b2b tests" begin
     b2b_solver = (x, y) -> UnfoldDecode.solver_b2b(x, y; cross_val_reps = 5)
