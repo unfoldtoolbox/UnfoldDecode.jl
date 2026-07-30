@@ -26,6 +26,7 @@ Use `UnfoldDecodingModel` to apply overlap correction in a cross-validated way, 
 - `eventcolumn::Union{Symbol,String} = :event` - the column in `tbl` to differentiate the basisfunctions as defined in `design`
 - `unfold_fit_options`: optional `NamedTuple` of arguments, provided to the initial "overlap-cleaning" `Unfold.fit` function, e.g. `unfold_fit_options = (;solver=(x,y)->solver_krylov(x,y,GPU=true))` for GPU fit (need to load `Krylov` and `CUDA` before)
 - `multithreading::Bool = true`: Activate/deactivate multi-threading over time-points
+- `predict_type::scitype = OrderedFactor` The scitype requested by MLJ to do predicts. Could be `continuous` for continuous predictors, e.g. with ridge regression
 
 # Returns
 - `result::UnfoldDecodingModel` : An Unfold-type model that you could inspect e.g. via `coef(result)`
@@ -42,6 +43,7 @@ function Unfold.fit(
     eventcolumn = :event,
     unfold_fit_options = (;),
     multithreading = true,
+    predict_type=OrderedFactor
 )
 
     tbl = deepcopy(tbl)
@@ -91,9 +93,11 @@ function Unfold.fit(
         ix_test =
             target[1] == Any ? (1:size(tbltest, 1)) : tbltest[:, eventcolumn] .== target[1]
 
-        y_train = coerce(tbltrain[ix_train, target[2]], OrderedFactor)
-        y_test = coerce(tbltest[ix_test, target[2]], OrderedFactor)
 
+        
+        y_train = coerce(tbltrain[ix_train, target[2]], predict_type)
+        y_test = coerce(tbltest[ix_test, target[2]], predict_type)
+        
 
         # remove missing
 
