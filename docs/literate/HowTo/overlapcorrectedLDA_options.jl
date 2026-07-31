@@ -54,3 +54,72 @@ uf_lda = UnfoldDecode.fit(
 plot_erp(coeftable(uf_lda))
 
 # Voila, the model classified the correct period at the correct event
+
+# ## Fitting the Overlap-corrected Ridge Regression model 
+RidgeRegressor = @load RidgeRegressor pkg=MLJLinearModels
+
+# you could use other parameters, check out `?RidgeRegressor`
+ridgeModel = RidgeRegressor(
+    lambda = 1.0, 
+    fit_intercept = true,
+    penalize_intercept = false,
+)
+
+# change the setting in MLJ to allow for continuous predictions
+MLJ.machine(
+    model::RidgeRegressor,
+    X::AbstractMatrix{Float64},
+    y::SubArray{Float64};
+    kwargs...,
+) = MLJ.machine(
+    model,
+    MLJ.table(X),
+    y;
+    kwargs...,
+)
+
+# load the model
+uf_ridge =Unfold.fit(
+    UnfoldDecodingModel,
+    des, 
+    evt, 
+    dat, 
+    ridgeModel, 
+    "eventA" => :continuous; 
+    nfolds = 2, 
+    predict_type=Continuous)
+
+
+ridge_scores = coeftable(uf_ridge,measure=RSquared())
+plot_erp(ridge_scores; mapping = (; color = :estimate))
+
+# Voila again, the model can predict the correct period at the correct event
+
+# ## Grid search for ridge regression lambda parameter
+r = range(
+		ridgeModel,
+		:lambda;
+		lower = 1e-6,
+		upper = 1e2,
+		scale = :log,
+	)
+
+ridgeTunedModel = TunedModel(
+	model=ridgeModel,
+	resampling=CV(nfolds=3),
+	range = r,
+	tuning=Grid(resolution=4), # test 4 λ values on a logarithmic scale
+	measure = RSquared(),
+)
+
+
+# Now we can fit the model with the tuned hyperparameter
+uf_ridge_tuned =Unfold.fit(
+    UnfoldDecodingModel, 
+    des, 
+    evt, 
+    dat, 
+    ridgeTunedModel, 
+    "eventA" => :continuous; 
+    nfolds = 2, 
+    predict_type=Continuous)
