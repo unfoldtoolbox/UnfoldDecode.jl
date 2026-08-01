@@ -66,6 +66,7 @@ ridgeModel = RidgeRegressor(
 )
 
 # change the setting in MLJ to allow for continuous predictions
+
 MLJ.machine(
     model::RidgeRegressor,
     X::AbstractMatrix{Float64},
@@ -79,7 +80,7 @@ MLJ.machine(
 )
 
 # load the model
-uf_ridge =Unfold.fit(
+uf_ridge = Unfold.fit(
     UnfoldDecodingModel,
     des, 
     evt, 
@@ -96,6 +97,8 @@ plot_erp(ridge_scores; mapping = (; color = :estimate))
 # Voila again, the model can predict the correct period at the correct event
 
 # ## Grid search for ridge regression lambda parameter
+
+# We can use MLJ's built-in tuning functionality to perform a grid search over the lambda parameter for ridge regression. 
 r = range(
 		ridgeModel,
 		:lambda;
@@ -114,7 +117,7 @@ ridgeTunedModel = TunedModel(
 
 
 # Now we can fit the model with the tuned hyperparameter
-uf_ridge_tuned =Unfold.fit(
+uf_ridge_tuned = Unfold.fit(
     UnfoldDecodingModel, 
     des, 
     evt, 
